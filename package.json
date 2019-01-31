@@ -1,0 +1,35 @@
+{
+  "name": "happy-download",
+  "version": "1.0.0",
+  "description": "download file, git clone repository",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HelTi/happy-download.git"
+  },
+  "keywords": [
+    "node",
+    "download",
+    "file",
+    "git",
+    "clone",
+    "request"
+  ],
+  "author": "helti",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HelTi/happy-download/issues"
+  },
+  "homepage": "https://github.com/HelTi/happy-download#readme",
+  "dependencies": {
+    "colors": "^1.3.3",
+    "commander": "^2.19.0",
+    "inquirer": "^6.2.1",
+    "mime-types": "^2.1.21",
+    "ora": "^3.0.0",
+    "request": "^2.88.0"
+  }
+}
