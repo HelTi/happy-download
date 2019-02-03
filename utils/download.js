@@ -31,9 +31,12 @@ function download(url, { dirPath = 'download', filename = 'file_name' } = {}, cb
       })
       .on('response', (response) => {
         let { headers, statusCode } = response
-        let contentType = response.headers['content-type'],
-          extension_name = '.' + mime.extension(contentType);
-        filename = filename + extension_name
+        let contentType = response.headers['content-type'];
+        let urlSplit = url.split('/'),
+          urlSplitLen = urlSplit.length;
+        let file_name = (urlSplit[urlSplitLen - 1]).split('.') ? ((urlSplit[urlSplitLen - 1]).split('.'))[0] : urlSplit[2];
+        extension_name = '.' + mime.extension(contentType)
+        filename = file_name ? file_name + extension_name : 'index'
 
         let wr = fs.createWriteStream(path.join(DOWNLOAD_PATH, filename))
         wr.on('finish', function () {

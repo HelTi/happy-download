@@ -18,7 +18,7 @@ program
     } else {
       let downloadOpt = {}
       if (!!argvs[2]) {
-        downloadOpt['filename'] = argvs[2]
+        downloadOpt['dirPath'] = argvs[2]
       }
 
       spinner.start('开始下载 \n')
@@ -28,7 +28,6 @@ program
     }
   })
   .option('-g, --git <url>', 'git repository address', function (val) {
-    console.log('gitaddress', val)
     spinner.start('开始下载 \n')
     gitClone(val, function () {
       spinner.succeed('下载完成！')
