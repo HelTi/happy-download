@@ -1,15 +1,15 @@
-## happy-download
+## helti-cli
 
 > 下载网络文件，克隆git仓库
 
 ### 使用
 
-> npm install happy-download -g
+> npm install helti-cli -g
 
 ```shell
 ## 下载网络文件
-happy-download --url <url>   ##url必须加上http或者https协议
+helti-cli --url <url>   ##url必须加上http或者https协议
 
 ## 克隆git仓库
-happy-download --git <url>
+helti-cli --git <url>   ##htpps or ssh
 ```
