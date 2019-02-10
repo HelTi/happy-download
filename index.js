@@ -9,7 +9,7 @@ const spinner = ora();
 spinner.color = 'yellow';
 
 program
-  .version('0.2.0')
+  .version('0.2.1')
   .usage('[options] <file ...>')
   .option('-u, --url <url>', 'https or http address', function (url) {
     let argvs = process.argv.slice(2)
