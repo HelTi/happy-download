@@ -1,36 +1,32 @@
-const program = require('commander')
-const colors = require('colors')
-const ora = require('ora');
+const program = require("commander");
+const colors = require("colors");
+const ora = require("ora");
+var pkg = require("./package.json");
 
-const download = require('./utils/download')
-const gitClone = require('./utils/gitclone')
+const download = require("./utils/download");
 
 const spinner = ora();
-spinner.color = 'yellow';
+spinner.color = "yellow";
 
 program
-  .version('0.2.1')
-  .usage('[options] <file ...>')
-  .option('-u, --url <url>', 'https or http address', function (url) {
-    let argvs = process.argv.slice(2)
-    if (!url) {
-      console.log('请输入url'.red)
-    } else {
-      let downloadOpt = {}
-      if (!!argvs[2]) {
-        downloadOpt['dirPath'] = argvs[2]
-      }
-
-      spinner.start('开始下载 \n')
-      download(url, downloadOpt).then((_) => {
-        spinner.succeed('下载完成！')
-      })
+  .version(pkg.version)
+  .command("down <url>")
+  .option("-d, --dir <d>", "deposit file address (Folder)）")
+  .option("-n, --name <n>", "rename files", null)
+  .action(function(url, cmd) {
+    let downloadOpt = {};
+    if (cmd.dir) {
+      downloadOpt["dirPath"] = cmd.dir;
     }
-  })
-  .option('-g, --git <url>', 'git repository address', function (val) {
-    spinner.start('开始下载 \n')
-    gitClone(val, function () {
-      spinner.succeed('下载完成！')
-    })
-  })
-  .parse(process.argv);
+
+    if (cmd.name) {
+      downloadOpt["filename"] = cmd.name;
+    }
+    
+    spinner.start("开始下载 \n");
+    download(url, downloadOpt).then(_ => {
+      spinner.succeed("下载完成！");
+    });
+  });
+
+program.parse(process.argv);
