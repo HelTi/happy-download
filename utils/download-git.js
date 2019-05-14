@@ -3,7 +3,7 @@ const ora = require('ora')
 
 const spinner = ora()
 
-module.exports = function(repo, tmp) {
+module.exports = function(repo, tmp, cb) {
   spinner.start('开始下载模版 \n')
   download(repo, tmp, function(err) {
     if (err) {
@@ -11,5 +11,6 @@ module.exports = function(repo, tmp) {
     } else {
       spinner.succeed('下载模版成功！ \n')
     }
+    cb && cb(err)
   })
 }

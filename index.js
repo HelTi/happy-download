@@ -8,7 +8,7 @@ const path = require('path')
 const CWD = process.cwd()
 
 const download = require('./utils/download')
-const download_git = require('download-git-repo')
+const download_git = require('./utils/download-git')
 const templateUrlMap = require('./template/url')
 
 const spinner = ora()
@@ -59,14 +59,7 @@ program
       }
       inquirer.prompt(promptList).then(anwsers => {
         const TEMPLATE_URL = templateUrlMap[anwsers.template]
-        spinner.start('开始下载模版 \n')
-        download_git(TEMPLATE_URL, dir, function(err) {
-          if (err) {
-            spinner.fail('下载模版失败 ！\n')
-          } else {
-            spinner.succeed('下载模版成功！ \n')
-          }
-        })
+        download_git(TEMPLATE_URL, dir)
       })
     }
   })
